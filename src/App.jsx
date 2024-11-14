@@ -1,23 +1,23 @@
-import React, {useState} from 'react'
-import './App.css'
-
-import IPTracker from './components/IPTracker'
-import ImageSlider from './components/ImagesSlider'
+import React, { useState } from 'react';
+import IPTracker from './components/IPTracker';
+import ImageSlider from './components/ImageSlider';
+import './App.css';
 
 function App() {
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState(null);
 
-  const handlenewLocation = (newLocation) =>(
+  const handleNewLocation = (newLocation) => {
     setLocation(newLocation)
-  )
+  }
+
 
   return (
-    <div className='App'>
-      <h1>IP Address tracker with location based images</h1>
-      <IPTracker location={location} onNewLocation={handlenewLocation} />
-      <ImageSlider location={location} />
+    <div className="App">
+      <h1>IP Address Tracker with Location-Based Images</h1>
+      <IPTracker onLocationChange={handleNewLocation} />
+      <h2>{location && <ImageSlider location={location} />}</h2>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
