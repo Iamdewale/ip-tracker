@@ -11,27 +11,29 @@ function ImageSlider({ location }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('https://api.unsplash.com/search/photos?query=${location}&client_id=YOUR_UNSPLASH_ACCESS_KEY');
+        const response = await axios.get("https://api.unsplash.com/search/photos?query=${location}&client_id=ZxlkZf05QeNsiLkFTJEjiQVenewla17zcX-XE5dMpsI");
         setImages(response.data.results);
       } catch (error) {
         console.error("Error fetching images", error);
       }
     };
 
-    if (location) fetchImages();
+    if (location){
+      fetchImages();
+    };
   }, [location]);
 
   return (
     <div className="image-slider">
       <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
+        spaceBetween={5}
+        slidesPerView={3}
         navigation
         pagination={{ clickable: true }}
       >
         {images.map((img, index) => (
           <SwiperSlide key={index}>
-            <img src={img.urls.regular} alt={img.alt_description || "Location-based"} />
+            <img src={img.urls.small} alt={img.alt_description || "Location-based"} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -39,3 +41,4 @@ function ImageSlider({ location }) {
   );
 }
 
+export default ImageSlider;
